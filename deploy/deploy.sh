@@ -2,15 +2,15 @@
 set -e
 
 # =============================================
-#  Project Fail Mary — Deployment Script
+#  Garuda — Deployment Script
 # =============================================
 
 PROJECT_DIR="/home/ubuntu/app"
-WEB_DIR="/var/www/drone-shooter"
-REPO_URL="https://github.com/0bVdnt/project-fail-mary.git"
+WEB_DIR="/var/www/garuda"
+REPO_URL="https://github.com/0bVdnt/garuda.git"
 
 echo "=========================================="
-echo "  Project Fail Mary — Deploying"
+echo "  Garuda — Deploying"
 echo "=========================================="
 
 # Source cargo env for wasm-pack
@@ -79,15 +79,15 @@ npm install --omit=dev
 # ---- Start/Restart Server ----
 echo ""
 echo "[7/7] Starting game server..."
-pm2 describe drone-server >/dev/null 2>&1 &&
-    pm2 restart drone-server ||
-    pm2 start index.js --name drone-server
+pm2 describe garuda-server >/dev/null 2>&1 &&
+    pm2 restart garuda-server ||
+    pm2 start index.js --name garuda-server
 
 pm2 save
 
 echo ""
 echo "=========================================="
-echo "  ✅ Deployment complete!"
+echo "    Deployment complete!"
 echo "=========================================="
 echo ""
 echo "  Verify:"

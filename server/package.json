@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "garuda-server",
   "version": "1.0.0",
-  "description": "Project Fail Mary - Game Server",
+  "description": "Garuda - Game Server",
   "main": "index.js",
   "type": "module",
   "scripts": {

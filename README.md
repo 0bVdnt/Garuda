@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚁 Project Fail Mary
+# 🦅 Garuda
 
 ### _A multiplayer 3D drone combat game in the browser_
 
@@ -17,7 +17,7 @@
 
 _Built with Three.js, WebAssembly, WebSockets, and custom GLSL shaders_
 
-[Play Now](#deployment) · [Report Bug](https://github.com/0bVdnt/project-fail-mary/issues) · [Request Feature](https://github.com/0bVdnt/project-fail-mary/issues)
+[Play Now](#deployment) · [Report Bug](https://github.com/0bVdnt/garuda/issues) · [Request Feature](https://github.com/0bVdnt/garuda/issues)
 
 ---
 
@@ -45,34 +45,34 @@ _Built with Three.js, WebAssembly, WebSockets, and custom GLSL shaders_
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        Browser                              │
-│                                                             │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │                   Three.js Scene                     │   │
-│  │                                                      │   │
-│  │  ┌──────────┐  ┌──────────┐  ┌────────────────────┐  │   │
-│  │  │ Terrain  │  │  Ocean   │  │  Drone Renderer    │  │   │
-│  │  │ Workers  │  │ Shaders  │  │  (GLTF Loader)     │  │   │
-│  │  └────┬─────┘  └──────────┘  └────────────────────┘  │   │
-│  │       │                                              │   │
-│  │  ┌────▼─────┐  ┌──────────┐  ┌────────────────────┐  │   │
-│  │  │ WASM     │  │ Particle │  │  Post-Processing   │  │   │
-│  │  │ dem2mesh │  │ Engine   │  │  Pipeline          │  │   │
-│  │  └──────────┘  └──────────┘  └────────────────────┘  │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                          │                                  │
-│                    Socket.IO Client                         │
-└──────────────────────────┬──────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│                        Browser                             │
+│                                                            │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │                   Three.js Scene                     │  │
+│  │                                                      │  │
+│  │  ┌──────────┐  ┌──────────┐  ┌────────────────────┐  │  │
+│  │  │ Terrain  │  │  Ocean   │  │  Drone Renderer    │  │  │
+│  │  │ Workers  │  │ Shaders  │  │  (GLTF Loader)     │  │  │
+│  │  └────┬─────┘  └──────────┘  └────────────────────┘  │  │
+│  │       │                                              │  │
+│  │  ┌────▼─────┐  ┌──────────┐  ┌────────────────────┐  │  │
+│  │  │ WASM     │  │ Particle │  │  Post-Processing   │  │  │
+│  │  │ dem2mesh │  │ Engine   │  │  Pipeline          │  │  │
+│  │  └──────────┘  └──────────┘  └────────────────────┘  │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                          │                                 │
+│                    Socket.IO Client                        │
+└──────────────────────────┬─────────────────────────────────┘
                            │ WebSocket
-┌──────────────────────────▼──────────────────────────────────┐
-│                     Node.js Server                          │
-│                                                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌────────────────┐     │
-│  │   Express    │  │  Socket.IO   │  │   Bot Engine   │     │
-│  │   :3001      │  │  Multiplayer │  │   (AI Player)  │     │
-│  └──────────────┘  └──────────────┘  └────────────────┘     │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────▼─────────────────────────────────┐
+│                     Node.js Server                         │
+│                                                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌────────────────┐    │
+│  │   Express    │  │  Socket.IO   │  │   Bot Engine   │    │
+│  │   :3001      │  │  Multiplayer │  │   (AI Player)  │    │
+│  └──────────────┘  └──────────────┘  └────────────────┘    │
+└────────────────────────────────────────────────────────────┘
 ```
 
 <br />
@@ -144,7 +144,7 @@ _Built with Three.js, WebAssembly, WebSockets, and custom GLSL shaders_
 ## 📁 Project Structure
 
 ```
-project-fail-mary/
+garuda/
 ├── client/                          # Frontend (Three.js app)
 │   ├── config/                      # Webpack & build configuration
 │   │   └── webpack.config.js        # Build pipeline (JS, GLSL, WASM, Workers)
@@ -206,8 +206,8 @@ project-fail-mary/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/0bVdnt/project-fail-mary.git
-cd project-fail-mary
+git clone https://github.com/0bVdnt/garuda.git
+cd garuda
 ```
 
 ### 2. Build the WASM module
@@ -252,7 +252,7 @@ Full guide for deploying on a single EC2 instance with Nginx as a reverse proxy.
 │              EC2 Instance (t3.medium)            │
 │                                                  │
 │   ┌──────────┐      ┌──────────────────────────┐ │
-│   │  Nginx   │────▶ │  /  → static build files │ │
+│   │  Nginx   │───▶ │  /  → static build files │ │
 │   │  :80     │      │  /socket.io → Node :3001 │ │
 │   └──────────┘      └──────────────────────────┘ │
 │                          │                       │
@@ -290,7 +290,7 @@ ssh -i your-key.pem ubuntu@YOUR_EC2_PUBLIC_IP
 sudo su
 
 # Download and run the setup script
-git clone https://github.com/0bVdnt/project-fail-mary.git /home/ubuntu/app
+git clone https://github.com/0bVdnt/garuda.git /home/ubuntu/app
 cd /home/ubuntu/app
 chmod +x deploy/setup.sh deploy/deploy.sh
 ./deploy/setup.sh
@@ -320,7 +320,7 @@ chmod +x deploy/setup.sh deploy/deploy.sh
 1. Builds the Rust/WASM module with `wasm-pack`
 2. Installs client npm dependencies
 3. Builds the client with Webpack (generates static files in `client/build/`)
-4. Copies build output to `/var/www/drone-shooter/`
+4. Copies build output to `/var/www/garuda/`
 5. Installs server npm dependencies
 6. Starts (or restarts) the Node.js game server with PM2
 
@@ -330,8 +330,8 @@ chmod +x deploy/setup.sh deploy/deploy.sh
 
 ```bash
 # Copy nginx config
-sudo cp deploy/nginx.conf /etc/nginx/sites-available/drone-shooter
-sudo ln -sf /etc/nginx/sites-available/drone-shooter /etc/nginx/sites-enabled/
+sudo cp deploy/nginx.conf /etc/nginx/sites-available/garuda
+sudo ln -sf /etc/nginx/sites-available/garuda /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 
 # Test and reload
@@ -460,10 +460,10 @@ The `HtmlWebpackPartialsPlugin` (analytics) can silently prevent HTML emission. 
 cd /home/ubuntu/app && git pull && ./deploy/deploy.sh
 
 # View server logs
-pm2 logs drone-server --lines 100
+pm2 logs garuda-server --lines 100
 
 # Restart game server
-pm2 restart drone-server
+pm2 restart garuda-server
 
 # Monitor resources
 pm2 monit
@@ -492,7 +492,6 @@ sudo tail -f /var/log/nginx/error.log
 - Drone 3D model from [Sketchfab](https://sketchfab.com/) (see `client/public/assets/drone/AUTHOR`)
 - Elevation tiles from [Mapzen / AWS Terrain Tiles](https://registry.opendata.aws/terrain-tiles/)
 - [dem2mesh](./client/src/terrain/dem2mesh/) WASM crate based on work by Maxime Rouyrre
-- Original project by [amankumar321](https://github.com/amankumar321/drone-shooter-3d)
 - Water normal maps from Three.js examples
 
 <br />
@@ -507,8 +506,8 @@ This project is licensed under the MIT License — see the [LICENSE](./client/LI
 
 <div align="center">
 
-**[⬆ Back to Top](#-project-fail-mary)**
+**[⬆ Back to Top](#-garuda)**
 
-Made with ☕ and questionable life choices
+Made with ☕ and mass deployment trauma
 
 </div>

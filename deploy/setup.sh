@@ -2,7 +2,7 @@
 set -e
 
 echo "=========================================="
-echo "  Project Fail Mary — Server Setup"
+echo "  Garuda — Server Setup"
 echo "=========================================="
 
 echo ""
